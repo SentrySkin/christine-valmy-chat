@@ -1,0 +1,106 @@
+@import './fonts.css';
+
+:root {
+  /* Primary Colors */
+  --primary-gradient-start: #006747;
+  --primary-gradient-end: #004E42;
+  --primary-color: #006747;
+  
+  /* Background Colors */
+  --bg-primary: #006747;
+  --bg-secondary: #BFCEC2;
+  --bg-white: #ffffff;
+  --bg-error: #f8d7da;
+  
+  /* Text Colors */
+  --text-primary: #27282A;
+  --text-light: #FFECD5;
+  --text-white: #ffffff;
+  --text-error: #721c24;
+  
+  /* Border Colors */
+  --border-primary: #e0cfd6;
+  --border-secondary: #e1e5e9;
+  --border-error: #f5c6cb;
+  --border-success: #c3e6cb;
+  
+  /* Message Colors */
+  --user-message-bg: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
+  --bot-message-bg: var(--bg-white);
+  --bot-message-text: var(--text-primary);
+  --user-message-text: var(--text-white);
+  
+  /* Loading Colors */
+  --loading-dot-color: var(--primary-color);
+  --loading-bg: var(--bg-primary);
+  
+  /* Error Colors */
+  --error-bg: var(--bg-error);
+  --error-text: var(--text-error);
+  --error-border: var(--border-error);
+  
+  /* Success Colors */
+  --success-bg: #d4edda;
+  --success-text: #155724;
+  --success-border: var(--border-success);
+  
+  /* Shadow Colors */
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.2);
+  --shadow-primary: rgba(102, 126, 234, 0.4);
+  --shadow-white: rgba(255, 255, 255, 0.1);
+  
+  /* Hover Colors */
+  --hover-bg: rgba(255, 255, 255, 0.1);
+  --hover-error: rgba(114, 28, 36, 0.1);
+  
+  /* Scrollbar Colors */
+  --scrollbar-track: var(--bg-primary);
+  --scrollbar-thumb: #999999;
+  --scrollbar-thumb-hover: #777777;
+  
+  /* Typography */
+  --font-family: var(--font-primary);
+  --font-family-secondary: var(--font-secondary);
+  --font-family-fallback: var(--font-fallback);
+  --font-size-small: 0.8em;
+  --font-size-normal: 1em;
+  --font-size-large: 1.1em;
+  --font-size-xl: 1.6em;
+  --font-size-xxl: 1.8em;
+  --font-size-title: 2.5em;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 30px;
+  
+  /* Border Radius */
+  --border-radius-sm: 3px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 20px;
+  --border-radius-xl: 25px;
+  
+  /* Transitions */
+  --transition-fast: 0.3s ease;
+  --transition-normal: 0.3s ease;
+  
+  /* Z-index */
+  --z-index-modal: 1000;
+  --z-index-overlay: 999;
+  --z-index-dropdown: 100;
+  
+  /* Breakpoints */
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-desktop: 1200px;
+} 
