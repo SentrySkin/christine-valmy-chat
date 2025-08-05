@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import axios from 'axios'; // Added axios import
 
 function App({ isAdmin }) {
   const [name, setName] = useState('');
@@ -8,6 +9,10 @@ function App({ isAdmin }) {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Configuration - Update these with your actual n8n webhook URL
+  const N8N_WEBHOOK_URL = process.env.REACT_APP_N8N_WEBHOOK_URL || 'https://sentryskin.app.n8n.cloud/webhook-test/chat';
 
   // Simulate loading animation
   useEffect(() => {
@@ -38,7 +43,7 @@ function App({ isAdmin }) {
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
-    if (!currentMessage.trim()) return;
+    if (!currentMessage.trim() || isTyping) return;
 
     const userMessage = {
       id: Date.now(),
@@ -50,18 +55,79 @@ function App({ isAdmin }) {
     setMessages(prev => [...prev, userMessage]);
     setCurrentMessage('');
     setIsTyping(true);
+    setError(null);
 
-    // Simulate bot response
-    setTimeout(() => {
+    try {
+      // Send message to n8n webhook
+      const response = await sendMessageToN8N(currentMessage, name);
+      
       const botResponse = {
         id: Date.now() + 1,
         type: 'bot',
-        text: `Thanks for your message${name ? `, ${name}` : ''}! I'm a demo chat interface. This is a sample response.`,
+        text: response.reply || response.message || 'I received your message but couldn\'t process it properly.',
         timestamp: new Date()
       };
+      
       setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      console.error('Chat error:', error);
+      setError(error.message);
+      
+      // Add error message to chat
+      const errorMessage = {
+        id: Date.now() + 1,
+        type: 'bot',
+        text: 'Sorry, I\'m having trouble connecting right now. Please try again in a moment.',
+        timestamp: new Date(),
+        isError: true
+      };
+      
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
+  };
+
+  const sendMessageToN8N = async (message, userName) => {
+    try {
+      // Get Google Cloud authentication token
+      const getAuthToken = async () => {
+        try {
+          // If running in development, you might need to handle this differently
+          // For production, this would be handled server-side
+          return process.env.REACT_APP_GCP_AUTH_TOKEN || 'your-auth-token-here';
+        } catch (error) {
+          console.error('Error getting auth token:', error);
+          throw new Error('Authentication failed');
+        }
+      };
+
+      const authToken = await getAuthToken();
+      
+      // Debug: Log the token (remove this after testing)
+      console.log('Auth token being sent:', authToken);
+      
+      const payload = {
+        message: message,
+        userName: userName || 'Anonymous',
+        timestamp: new Date().toISOString(),
+        sessionId: Date.now().toString(), // Simple session tracking
+        token: authToken // Include auth token for Google Cloud Function
+      };
+
+      const response = await axios.post(N8N_WEBHOOK_URL, payload, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        timeout: 30000, // 30 second timeout
+        withCredentials: false // Disable credentials for CORS
+      });
+
+      return response.data;
+    } catch (error) {
+      console.error('Error sending message to n8n:', error);
+      throw new Error('Failed to get response from AI. Please try again.');
+    }
   };
 
   if (isLoading) {
@@ -106,11 +172,18 @@ function App({ isAdmin }) {
           <p className="chat-subtitle">Christine Valmy Chat</p>
         </div>
 
+        {error && (
+          <div className="error-banner">
+            <span>{error}</span>
+            <button onClick={() => setError(null)} className="error-close">×</button>
+          </div>
+        )}
+
         <div className="chat-messages">
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`message ${message.type === 'user' ? 'user-message' : 'bot-message'}`}
+              className={`message ${message.type === 'user' ? 'user-message' : 'bot-message'} ${message.isError ? 'error-message' : ''}`}
             >
               <div className="message-content">
                 {message.text}
