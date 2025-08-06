@@ -57,4 +57,9 @@ coverage/
 
 # Temporary folders
 tmp/
-temp/ 
+temp/
+
+# Google Cloud service account keys
+*.json
+!package.json
+!package-lock.json 
