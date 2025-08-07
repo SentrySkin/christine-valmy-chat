@@ -1,0 +1,526 @@
+/* Bento Grid Container */
+.bento-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  min-height: 100vh;
+  background: var(--primary-gradient-start);
+  font-family: var(--font-family);
+}
+
+/* Bento Items - Base Styles */
+.bento-item {
+  background: var(--primary-gradient-start);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  color: var(--text-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Hero Section - Chat Functionality */
+.hero-section {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
+  justify-content: flex-start;
+  padding: 2rem;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 500px;
+}
+
+.logo-container {
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  background: var(--text-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-gradient-start);
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-light);
+  margin-bottom: 2rem;
+  color: var(--text-white);
+  font-family: var(--font-family-secondary);
+}
+
+.chat-form {
+  width: 100%;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.chat-input {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1rem;
+  background: var(--text-white);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.chat-input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.chat-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.input-icons {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.emoji-icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.emoji-icon:hover {
+  transform: scale(1.1);
+}
+
+.send-icon {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 0.25rem;
+  border-radius: 50%;
+}
+
+.send-icon:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.send-icon:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Panel Titles */
+.panel-title {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-medium);
+  margin: 0 0 1rem 0;
+  color: var(--text-white);
+  font-family: var(--font-family-secondary);
+  letter-spacing: 0.1em;
+}
+
+/* Locations Panel */
+.locations-panel {
+  grid-column: 1;
+  grid-row: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.location-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.location-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-normal);
+}
+
+.location-icon {
+  font-size: 1rem;
+  color: #90EE90;
+}
+
+/* Enrollment Panel */
+.enrollment-panel {
+  grid-column: 1;
+  grid-row: 2;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.enrollment-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0.5rem 0 1rem 0;
+}
+
+.enrollment-text {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Schedule Panel */
+.schedule-panel {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.schedule-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.schedule-item .time {
+  font-weight: var(--font-weight-medium);
+  color: #90EE90;
+}
+
+.schedule-item .class {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Courses Panel */
+.courses-panel {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.courses-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+/* Alumni Panel */
+.alumni-panel {
+  grid-column: 1;
+  grid-row: 3;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.alumni-text {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 1rem 0;
+}
+
+.flip-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #90EE90;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.flip-link:hover {
+  color: var(--text-white);
+  transform: translateX(2px);
+}
+
+.flip-icon {
+  font-size: 0.9rem;
+}
+
+/* Image Panel */
+.image-panel {
+  grid-column: 2 / 4;
+  grid-row: 3;
+  padding: 0;
+  overflow: hidden;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2c5f2d 0%, #1a4d1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.image-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.facial-treatment {
+  width: 80%;
+  height: 80%;
+  position: relative;
+  background: linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-head {
+  width: 60px;
+  height: 60px;
+  background: #f4d03f;
+  border-radius: 50%;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+
+.therapist-hands {
+  width: 40px;
+  height: 20px;
+  background: #ecf0f1;
+  border-radius: 10px;
+  position: absolute;
+  top: 35%;
+  left: 45%;
+}
+
+.cityscape {
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to top, #34495e 0%, #2c3e50 100%);
+  position: absolute;
+  bottom: 0;
+  border-radius: 0 0 1rem 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .bento-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .hero-section {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    padding: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .locations-panel {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .enrollment-panel {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .schedule-panel {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .courses-panel {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .alumni-panel {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .image-panel {
+    grid-column: 2;
+    grid-row: 4;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto auto;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .hero-section {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .chat-input {
+    padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .locations-panel {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 1rem;
+  }
+
+  .enrollment-panel {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 1rem;
+  }
+
+  .schedule-panel {
+    grid-column: 1;
+    grid-row: 4;
+    padding: 1rem;
+  }
+
+  .courses-panel {
+    grid-column: 1;
+    grid-row: 5;
+    padding: 1rem;
+  }
+
+  .alumni-panel {
+    grid-column: 1;
+    grid-row: 6;
+    padding: 1rem;
+  }
+
+  .image-panel {
+    grid-column: 1;
+    grid-row: 7;
+    min-height: 200px;
+  }
+
+  .panel-title {
+    font-size: 1rem;
+  }
+
+  .location-item {
+    font-size: 0.8rem;
+  }
+
+  .enrollment-text,
+  .alumni-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-container {
+    padding: 0.25rem;
+    gap: 0.25rem;
+  }
+
+  .bento-item {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.25rem;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .chat-input {
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .input-icons {
+    right: 0.25rem;
+  }
+
+  .emoji-icon,
+  .send-icon {
+    font-size: 1rem;
+  }
+} 

@@ -14,7 +14,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://us-central1-christinevalmy.cloudfunctions.net/rag-search-claude",
+        "url": "https://us-central1-christinevalmy.cloudfunctions.net/cv-assistant-claude",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "httpHeaderAuth": {
@@ -34,12 +34,20 @@
         "bodyParameters": {
           "parameters": [
             {
-              "name": "query",
-              "value": "{{ $json.message }}"
+              "name": "user_id",
+              "value": "{{ $json.user_id }}"
             },
             {
-              "name": "session_id",
-              "value": "{{ $json.sessionId }}"
+              "name": "thread_id",
+              "value": "{{ $json.thread_id }}"
+            },
+            {
+              "name": "query",
+              "value": "{{ $json.query }}"
+            },
+            {
+              "name": "history",
+              "value": "{{ $json.history }}"
             }
           ]
         }
@@ -51,7 +59,27 @@
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "{\n  \"reply\": \"{{ $json.response || $json.answer || $json.result }}\",\n  \"status\": \"success\",\n  \"sessionId\": \"{{ $json.sessionId }}\"\n}"
+        "responseBody": "{\n  \"reply\": \"{{ $json.response || $json.answer || $json.result || $json }}\",\n  \"status\": \"success\",\n  \"sessionId\": \"{{ $json.sessionId }}\"\n}",
+        "responseHeaders": {
+          "parameters": [
+            {
+              "name": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "name": "Access-Control-Allow-Methods",
+              "value": "GET, POST, OPTIONS"
+            },
+            {
+              "name": "Access-Control-Allow-Headers",
+              "value": "Content-Type, Authorization"
+            },
+            {
+              "name": "Access-Control-Max-Age",
+              "value": "86400"
+            }
+          ]
+        }
       },
       "name": "Response",
       "type": "n8n-nodes-base.respondToWebhook",
