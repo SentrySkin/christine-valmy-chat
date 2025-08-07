@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import BentoGrid from './components/BentoGrid';
-import Chat from './components/Chat';
 
 function App({ isAdmin }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +34,6 @@ function App({ isAdmin }) {
   return (
     <div className="App">
       <BentoGrid />
-      <Chat isAdmin={isAdmin} />
     </div>
   );
 }

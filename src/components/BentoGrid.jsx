@@ -1,29 +1,46 @@
 import React from 'react';
 import './BentoGrid.css';
+import Chat from './Chat';
 
 const BentoGrid = () => {
+  // Get the logo URL from WordPress data
+  const getLogoUrl = () => {
+    // Use the logo URL from WordPress if available
+    if (window.cvtAjax?.logoUrl) {
+      return window.cvtAjax.logoUrl;
+    }
+    
+    // Fallback to constructing the URL
+    const pluginUrl = window.cvtAjax?.pluginUrl || '/wp-content/plugins/christine-valmy-test/';
+    return `${pluginUrl}public/images/logos/cv logo round.svg`;
+  };
+  
+  const logoUrl = getLogoUrl();
+  
   return (
     <div className="bento-container">
       {/* Hero Section - Chat Functionality */}
       <div className="bento-item hero-section">
         <div className="hero-content">
           <div className="logo-container">
-            <div className="logo">CV</div>
+            <div className="logo">
+              <img 
+                src={logoUrl}
+                alt="Christine Valmy Logo"
+                onError={(e) => {
+                  console.error('Logo failed to load:', e.target.src);
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'block';
+                }}
+              />
+              <div style={{ display: 'none', fontSize: '2rem', fontWeight: 'bold', color: 'var(--primary-gradient-start)' }}>
+                CV
+              </div>
+            </div>
           </div>
           <h1 className="hero-title">Christine Valmy</h1>
           <div className="chat-form">
-            <div className="input-container">
-              <input
-                type="text"
-                placeholder="Ask me anything about Christine Valmy..."
-                className="chat-input"
-                disabled
-              />
-              <div className="input-icons">
-                <span className="emoji-icon">😊</span>
-                <button className="send-icon" disabled>→</button>
-              </div>
-            </div>
+            <Chat isAdmin={false} />
           </div>
         </div>
       </div>
@@ -38,15 +55,7 @@ const BentoGrid = () => {
           </div>
           <div className="location-item">
             <span className="location-icon">📍</span>
-            <span>Los Angeles</span>
-          </div>
-          <div className="location-item">
-            <span className="location-icon">📍</span>
-            <span>Miami</span>
-          </div>
-          <div className="location-item">
-            <span className="location-icon">📍</span>
-            <span>Chicago</span>
+            <span>New Jersey</span>
           </div>
         </div>
       </div>

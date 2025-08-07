@@ -90,7 +90,8 @@ function cvt_shortcode() {
         window.cvtAjax = {
             ajaxurl: '<?php echo admin_url('admin-ajax.php'); ?>',
             nonce: '<?php echo wp_create_nonce('cvt_nonce'); ?>',
-            pluginUrl: '<?php echo CVT_PLUGIN_URL; ?>'
+            pluginUrl: '<?php echo CVT_PLUGIN_URL; ?>',
+            logoUrl: '<?php echo CVT_PLUGIN_URL; ?>public/images/logos/cv logo round.svg'
         };
         
         <?php if (CVT_DEV_MODE): ?>
