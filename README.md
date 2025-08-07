@@ -164,7 +164,7 @@ See `N8N_SETUP.md` for detailed integration guide.
 
 ## 📄 License
 
-This project is proprietary to Christine Valmy.
+This project is proprietary to Sentry Skin.
 
 ## 🏢 About Christine Valmy
 
