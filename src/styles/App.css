@@ -1,5 +1,58 @@
 @import './variables.css';
 
+/* Override WordPress theme constraints for our app using higher specificity */
+/* Using attribute selectors and multiple class combinations for maximum specificity */
+div[id="cvt-frontend-app"] {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+/* Target the specific WordPress layout constraint with higher specificity */
+.is-layout-constrained > div[id="cvt-frontend-app"] {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+/* Additional specificity for WordPress themes that might have stronger selectors */
+.wp-block-group.is-layout-constrained > div[id="cvt-frontend-app"],
+main.is-layout-constrained > div[id="cvt-frontend-app"],
+article.is-layout-constrained > div[id="cvt-frontend-app"] {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+/* Even higher specificity using multiple attribute selectors */
+div[id="cvt-frontend-app"][class] {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+/* Target the exact WordPress rule with maximum specificity */
+/* This matches the specificity of .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) */
+.is-layout-constrained > div[id="cvt-frontend-app"]:not(.alignleft):not(.alignright):not(.alignfull) {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+/* Additional specificity combinations for different WordPress themes */
+body .is-layout-constrained > div[id="cvt-frontend-app"],
+html body .is-layout-constrained > div[id="cvt-frontend-app"] {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
 /* Global resets for bento grid */
 * {
   box-sizing: border-box;
@@ -25,7 +78,6 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
   min-height: 100vh;
   margin: 0;
   padding: 5rem;

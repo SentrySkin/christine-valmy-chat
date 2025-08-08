@@ -1,5 +1,5 @@
 import React from 'react';
-import './BentoGrid.css';
+import '../styles/BentoGrid.css';
 import Chat from './Chat';
 
 const BentoGrid = () => {
