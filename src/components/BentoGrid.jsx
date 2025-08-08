@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/BentoGrid.css';
 import Chat from './Chat';
+import facialTreatmentImage from '../images/facial-treatment.jpg';
 
 const BentoGrid = () => {
   // Get the logo URL from WordPress data
@@ -110,13 +111,15 @@ const BentoGrid = () => {
       {/* Image Panel */}
       <div className="bento-item image-panel">
         <div className="image-placeholder">
-          <div className="image-content">
-            <div className="facial-treatment">
-              <div className="client-head"></div>
-              <div className="therapist-hands"></div>
-              <div className="cityscape"></div>
-            </div>
-          </div>
+          <img 
+            src={facialTreatmentImage} 
+            alt="Facial Treatment" 
+            onError={(e) => {
+              console.error('Facial treatment image failed to load:', e.target.src);
+              e.target.style.display = 'none';
+              // You could add a fallback placeholder here
+            }}
+          />
         </div>
       </div>
     </div>
